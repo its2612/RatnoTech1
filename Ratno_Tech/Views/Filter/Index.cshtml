@@ -1,0 +1,148 @@
+﻿@model IEnumerable<Ratno_Tech.Models.product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Product","Login")
+</p>
+<table class="table">
+
+    @using (Html.BeginForm("Index", "Filter", FormMethod.Get))
+    {
+    <tr>
+        <th>
+            @Html.ActionLink("Product Name", "Index", new { SortOrder =ViewBag.name,
+           Selectname = ViewBag.Selectname,
+           Selectdetails = ViewBag.Selectdetails
+       })
+        </th>
+
+        <th>
+           @Html.ActionLink("Product Price", "Index", new { SortOrder = ViewBag.price })
+        </th>
+        
+        <th>
+            @Html.ActionLink("Product details", "Index", new { SortOrder = ViewBag.details,
+           Selectname = ViewBag.Selectname,
+           Selectdetails =ViewBag.Selectdetails })
+                             
+        </th>
+
+
+        
+        <th></th>
+    </tr>
+
+    <tr>
+        <th>@Html.DropDownList("Selectname",
+           new SelectList(ViewBag.Uniquename,"Value","Text", "ViewBag.Selectname")
+            , "All", new { onchange = "form.submit();" })
+        </th>
+
+
+        @*<th>
+            @Html.DropDownList("Selectprice",
+           new SelectList(ViewBag.Uniqueprice, "Value", "Text", "Viewbag.Selectprice")
+            , "All", new { onchange = "form.submit();" })
+    </th>*@
+
+        <th></th>
+
+        <th>
+            @Html.DropDownList("Selectdetails", 
+           new SelectList(ViewBag.Uniquedetails, "Value", "Text", "ViewBag.Selectdetails")
+            , "All", new { onchange = "form.submit();" })
+        </th>
+
+    </tr>
+    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.details)
+        </td>
+        <td>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"  >Edit </button>|
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" style="background-color:lightblue" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle" style="text-align:center;background-color:bisque">Edit Product</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               <div class="jumbotron">
+                   <div class="row">
+                       <div class="col-md-4">
+                          <h3>Name</h3>
+                       </div>
+                       <div class="col-md-8">
+                          <textarea></textarea>
+                       </div>
+                       
+                   </div><hr />
+
+
+                   <div class="row">
+                       <div class="col-md-4">
+                           <h3>Price</h3>
+                       </div>
+                       <div class="col-md-8">
+                           <textarea></textarea>
+                       </div>
+
+                   </div><hr />
+
+
+
+                   <div class="row">
+                       <div class="col-md-4">
+                           <h3>Details</h3>
+                       </div>
+                       <div class="col-md-8">
+                           <textarea></textarea>
+                       </div>
+
+                   </div><hr />
+
+
+               </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='@Url.Action("Product","Login" )';">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("Logout", "Login", FormMethod.Post))
+{
+    <a href="javascript:;" onclick="document.forms[1].submit();">Logout</a>
+}

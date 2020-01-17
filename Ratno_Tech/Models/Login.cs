@@ -13,6 +13,8 @@ namespace Ratno_Tech.Models
         [Required]
         public string username { get; set; }
         [Required]
+        
+        
         public string password { get; set; }
 
         public Nullable<bool> IsActive { get; set; }

@@ -16,7 +16,6 @@ namespace Ratno_Tech.Controllers
         public ActionResult Index()
         {
 
-
             return View();
         }
         [HttpPost]
@@ -27,7 +26,7 @@ namespace Ratno_Tech.Controllers
                 using (Ratno_TechEntities db = new Ratno_TechEntities())
                 {
                     var obj = db.AdminCredentials.Where(m => m.username.Equals(user.username) && m.password.Equals(user.password)).FirstOrDefault();
-                    if (obj != null)
+                    if (obj.IsActive.Equals(true))
                     {
                         Session["adminID"] = obj.aid.ToString();
                         Session["UserName"] = obj.username.ToString();
@@ -58,7 +57,7 @@ namespace Ratno_Tech.Controllers
             return View();
         }
 
-
+        [Authorize]
         [HttpPost]
         public ActionResult Product(ProductModel product)
         {
@@ -85,7 +84,6 @@ namespace Ratno_Tech.Controllers
                 _member.name = product.name;
                 _member.details = product.details;
                 _member.price = product.price;
-
                 db.products.Add(_member);
                 db.SaveChanges();
                 ViewBag.Message = "Successfully Inserted";

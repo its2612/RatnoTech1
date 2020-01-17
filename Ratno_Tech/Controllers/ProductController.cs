@@ -17,9 +17,10 @@ namespace Ratno_Tech.Controllers
                 ProductModel details = new ProductModel();
                 var productdetails = db.products.ToList();
                 return View(productdetails);
-            }
-
-           
+            } 
         }
+
+
+       
     }
 }

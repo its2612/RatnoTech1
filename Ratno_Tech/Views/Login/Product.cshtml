@@ -62,6 +62,9 @@
     </div>
 }
 
+
+@Html.ActionLink("Check data", "Index", "Filter")
+
 @using (Html.BeginForm("Logout", "Login", FormMethod.Post))
 {
     <a href="javascript:;" onclick="document.forms[1].submit();">Logout</a>
