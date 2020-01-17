@@ -1,4 +1,10 @@
-﻿<div class="col-md-12 text-center">
+﻿@model Ratno_Tech.MailModel
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="col-md-12 text-center">
     <img src="~/Content/Images/contact.jpg" alt="image" class="img-responsive" />
 </div>
 <div class="jumbotron" style="width:100%;height:100%;border-radius:5%">
@@ -23,18 +29,27 @@
         </div>
         <hr />
         <hr />
-        <form method="post" action="Contact">
-            <div class="container">
-                <span class="form-control-static"> Receiver: </span>
-                <input class="form-control" type="text" name="receiver" /> <br />
-                <span class="form-control-static"> Subject: </span>
-                <input class="form-control" type="text" name="subject" /> <br />
-                <span class="form-control-static"> Message: </span>
-                <input class="form-control" type="text" name="message" /> <br />
-                <input class="btn btn-primary" type="submit" value="Send" />
-            </div>
-        </form>
+        <fieldset>
+    <legend>
+        Send Email
+    </legend>
+    @using (Html.BeginForm("Contact","Home"))
+    {
+        @Html.ValidationSummary()
+        <p>From: </p>
+        <p>@Html.TextBoxFor(m => m.From)</p>
+        <p>To: </p>
+        <p>@Html.TextBoxFor(m => m.To)</p>
+        <p>Subject: </p>
+        <p>@Html.TextBoxFor(m => m.Subject)</p>
+        <p>Body: </p>
+        <p>@Html.TextAreaFor(m => m.Body)</p>
+        <input type="submit" value="Send" />
+    }
+</fieldset> 
     </div>
+
+
 
 
 
