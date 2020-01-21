@@ -3,11 +3,25 @@
     ViewBag.Title = "Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model List<Ratno_Tech.Models.product>
-@foreach(var i in Model)
+<br />
+@foreach (var i in Model)
 {
-    <ul>
-        <li>@i.name</li>
-    </ul>
-    <img src="@Url.Content(@i.imagepath)"  />
+    <div class="row" style="border-radius:10px;background-color:lightgrey"  >
+        <div class="col-md-3">
+            <div class="display-field">
+                <img src="@Url.Content(@i.imagepath)" alt="zedgrthn" />
+            </div>  
+        </div>
+        <div class="col-md-6" style="cursor: pointer;" onclick="location.href = 'https://www.indiamart.com/proddetail/automatic-changeover-switch-15289051848.html';" target="_blank" rel="noopener">
+            <h2 style="color:red">@i.name</h2><hr />
+            <h3 style="color:black">
+                @i.details
+            </h3>
+        </div>
+        <div class="col-md-3">
+            <h3  style="color:green">Rs. @i.price</h3> 
+        </div>
+    </div>
+
+    <hr />
 }

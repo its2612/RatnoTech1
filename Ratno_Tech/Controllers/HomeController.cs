@@ -37,7 +37,7 @@ namespace Ratno_Tech.Controllers
             {
                 MailMessage mail = new MailMessage();
                 mail.To.Add(_objModelMail.To);
-                mail.From = new MailAddress(_objModelMail.From);
+                mail.From = new MailAddress("saurabhbhushan.sb@gmail.com");
                 mail.Subject = _objModelMail.Subject;
                 string Body = _objModelMail.Body;
                 mail.Body = Body;
@@ -49,12 +49,17 @@ namespace Ratno_Tech.Controllers
                 smtp.Credentials = new System.Net.NetworkCredential("saurabhbhushan.sb@gmail.com", "*7070889825#"); // Enter seders User name and password   
                 smtp.EnableSsl = true;
                 smtp.Send(mail);
-                return View("Contact", _objModelMail);
+                ModelState.Clear();
+                return View("Contact");
             }
             else
             {
-                return View();
+                return View(_objModelMail);
             }
         }
+        
+        
+
+
     }
 }

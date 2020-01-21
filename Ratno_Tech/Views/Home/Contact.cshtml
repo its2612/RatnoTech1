@@ -1,53 +1,69 @@
 ﻿@model Ratno_Tech.MailModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 <div class="col-md-12 text-center">
     <img src="~/Content/Images/contact.jpg" alt="image" class="img-responsive" />
 </div>
-<div class="jumbotron" style="width:100%;height:100%;border-radius:5%">
-    <div style="padding:10%;background-color:palevioletred">
-        <h2 style="text-align:center">Contact Details</h2><br />
+<div class="jumbotron" style="border-radius:5%">
 
-        <div class="row" style="border-radius:5%">
-            <div class="col-md-6" style="border-radius:5%;border-width:5%;border-color:aqua">
-                <h3 style="text-align:center">Main address</h3>
-                <p>abc</p>
-            </div>
-            <div class="col-md-6" style="border-radius:5%;border-width:5%;border-color:aqua">
-                <h3 style="text-align:center">Digital contact</h3>
-                <h4>Email</h4>
-                <p>saurabh.bhushan@diaspark.com</p>
-                <p>saurabhbhushan.sb@gmail.com</p>
-                <br />
-                <h4>Contact number</h4>
-                <p>8982592619</p>
 
-            </div>
-        </div>
-        <hr />
-        <hr />
-        <fieldset>
-    <legend>
-        Send Email
-    </legend>
-    @using (Html.BeginForm("Contact","Home"))
-    {
-        @Html.ValidationSummary()
-        <p>From: </p>
-        <p>@Html.TextBoxFor(m => m.From)</p>
-        <p>To: </p>
-        <p>@Html.TextBoxFor(m => m.To)</p>
-        <p>Subject: </p>
-        <p>@Html.TextBoxFor(m => m.Subject)</p>
-        <p>Body: </p>
-        <p>@Html.TextAreaFor(m => m.Body)</p>
-        <input type="submit" value="Send" />
-    }
-</fieldset> 
+    <div style="padding-top:5%;border-radius:5%">
+        <h2 style="text-align:center;color:darkblue">Contact Details</h2>
+        <br />
     </div>
+        <div class="row" style="padding:5%" >
+
+            <div class="col-md-6 col-sm-6" style="border-radius:5%;padding:10%;background-color:aquamarine;">
+                <h3 style="text-align:center">Main address</h3>
+                <p style="color:blue">abc</p>
+            </div>
+            <div class="col-md-6 col-sm-6" style="border-radius:5%;background-color:aquamarine;padding:10%">
+                <h3 style="text-align:center">Digital contact</h3>
+                <h4 style="color:red">Email</h4>
+                <p style="color:blue">saurabh.bhushan@diaspark.com</p>
+                <p style="color:blue">saurabhbhushan.sb@gmail.com</p>
+                
+         
+        </div>
+    </div>
+    <hr />
+    <hr />
+    <div class="row-md-12 row md-6">
+       
+        <fieldset style="border-radius:10%;padding:10%;background-color:antiquewhite">
+            <legend style="color:red">
+                Send Email
+            </legend>
+            @using (Html.BeginForm("Contact", "Home"))
+            {
+                
+                
+                
+                <p style="color:brown">Your email: </p>
+                <p>@Html.TextBoxFor(m => m.To)</p>
+                @Html.ValidationMessageFor(m => m.To)
+                <p style="color:brown">Subject: </p>
+                <p>@Html.TextBoxFor(m => m.Subject)</p>
+                @Html.ValidationMessageFor(m => m.Subject)
+                <p style="color:brown">Body: </p>
+                <p>@Html.TextAreaFor(m => m.Body)</p>
+                @Html.ValidationMessageFor(m => m.Body)
+                <input type="submit" value="Send" />
+            }
+        </fieldset> 
+
+
+    </div>
+
+
+
+    </div>
+       
+   
 
 
 
